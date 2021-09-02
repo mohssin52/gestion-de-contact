@@ -1,0 +1,36 @@
+<add-contact></add-contact>
+<ul class="collection with-header" *ngIf="contacts?.length >0 ;else ngContacts">
+    <li class="collection-header">
+        <h4>la listes des contacts</h4>
+    </li>
+    <li class="collection-item" *ngFor =" let contact of contacts">
+ 
+<div class="row">
+  <div class="s12 col">  <strong>{{contact.name}}</strong>{{contact.tele}} 
+  <button class="btn secondary-content"  (click) ="editContact(contact)"><i class="fa fa-pencil"></i></button>
+  <button class="btn secondary-content"  (click) ="deleteContact(contact)"><i class="fa fa-remove"></i></button>
+  </div>
+      <form class="col s12" *ngIf ="statusContact && contact.id == myContact.id">
+        <div class="row">
+          <div class="input-field col s12 m6">
+            <i class="fa fa-user prefix"></i>
+            <input id="icon_prefix" type="text" class="validate" [(ngModel)] ="contact.name" name ="name">
+            <label for="icon_prefix"></label>
+          </div>
+          <div class="input-field col s12 m6">
+            <i class="fa fa-phone prefix"></i>
+            <input id="icon_telephone" type="tel" class="validate" [(ngModel)] ="contact.tele" name ="tele">
+            <label for="icon_telephone"></label>
+          </div>
+        </div>
+    <button class="btn btn-danger" (click) ="updateContact(contact)" > update</button>
+      </form>
+    </div>
+
+    </li>
+  
+  </ul>
+  <ng-template #ngContacts>
+      <h4>la listes des contact est vide</h4>
+  </ng-template>
+        
